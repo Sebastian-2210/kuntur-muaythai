@@ -6,7 +6,7 @@ export const contactData = {
 
   phone: "+57 3116878716",
 
-  email: "contacto@kunturmuaythai.com",
+  email: "Kuntur.muaythai@gmail.com",
 
   address: "Cundinamarca, Colombia",
 
