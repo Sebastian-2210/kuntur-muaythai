@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    @apply border-brand-black/10;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-brand-white text-brand-black antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand-yellow text-brand-black;
+  }
+
+  /* Foco visible consistente en toda la app — accesibilidad, no decoración. */
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-brand-blue;
+  }
+}
+
+/* El proyecto usa "animaciones mínimas" (Framer Motion); por eso es
+   especialmente importante respetar la preferencia de reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
