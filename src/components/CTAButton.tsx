@@ -25,6 +25,25 @@ export default function CTAButton({
       "border border-white text-white hover:bg-white hover:text-black",
   };
 
+  const isExternal = href.startsWith("http");
+
+  if (isExternal) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={clsx(
+          "inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold transition-all duration-300 hover:scale-105",
+          variants[variant],
+          className
+        )}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
     <Link
       href={href}

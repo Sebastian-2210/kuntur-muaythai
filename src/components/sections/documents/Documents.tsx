@@ -39,7 +39,7 @@ export default function Documents() {
                 href={document.file}
                 className="mt-8 w-full"
               >
-                Descargar
+                Ver documentos
               </CTAButton>
 
             </Card>
