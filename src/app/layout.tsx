@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
+import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { siteConfig } from "@/config/site";
 import { fontDisplay, fontSans } from "@/lib/fonts";
 
@@ -7,15 +9,26 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+
   title: {
     default: siteConfig.fullName,
     template: `%s | ${siteConfig.name}`,
   },
+
   description: siteConfig.description,
+
   keywords: [...siteConfig.keywords],
+
   applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.name }],
+
+  authors: [
+    {
+      name: siteConfig.name,
+    },
+  ],
+
   creator: siteConfig.name,
+
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
@@ -32,12 +45,14 @@ export const metadata: Metadata = {
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: siteConfig.fullName,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
+
   robots: {
     index: true,
     follow: true,
@@ -46,14 +61,12 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+
   icons: {
     icon: "/favicon.ico",
   },
 };
 
-// Export separado de `viewport` (requerido por Next.js 15): controla el
-// comportamiento responsive del navegador y el color de la UI del sistema
-// en mobile (barra de estado / address bar).
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -70,8 +83,15 @@ export default function RootLayout({
     <html
       lang="es"
       className={`${fontSans.variable} ${fontDisplay.variable}`}
+      suppressHydrationWarning
     >
-      <body className="font-sans">{children}</body>
+      <body className="min-h-screen bg-black font-sans text-white antialiased">
+        {children}
+
+        {/* Componentes globales */}
+        <ScrollToTop />
+        <WhatsAppButton />
+      </body>
     </html>
   );
 }
